@@ -40,6 +40,7 @@ Item {
   readonly property real surfaceAlpha: Math.sqrt(Math.max(0, Math.min(1, root.preferences.opacity)))
   readonly property string tileShape: root.preferences.tileShape || "rounded"
   readonly property real tileRadiusRatio: DockModel.tileRadiusRatio(root.tileShape)
+  readonly property bool uniformIcons: root.preferences.uniformIcons === true
   readonly property bool themeColors: root.preferences.themeColors !== false
   readonly property color dockColor: root.themeColors ? Color.background : (root.preferences.dockColor || "#12141a")
   readonly property color drawerColor: root.themeColors ? Qt.darker(Color.background, 1.15) : (root.preferences.drawerColor || "#0a0c11")
@@ -1393,6 +1394,7 @@ Item {
     bottomInset: dockPanel.implicitHeight
     pinnedIds: root.dockData.pinned.map(function(p) { return p.id })
     tileShape: root.tileShape
+    uniformIcons: root.uniformIcons
     onDragMoved: function(app, x, y) { root.drawerDragMoved(app, x, y) }
     onDragEnded: function(app, x, y) { root.drawerDragEnded(app, x, y) }
     onPinToggleRequested: function(app) { if (app && app.id) root.togglePinApp(app.id) }
@@ -1837,6 +1839,7 @@ Item {
         appName: root.dropApp ? root.dropApp.name : ""
         fontFamily: root.fontFamily
         shape: root.tileShape
+        uniform: root.uniformIcons
       }
 
       // Main Items Content Row
@@ -1944,6 +1947,7 @@ Item {
             accent: root.accent
             fontFamily: root.fontFamily
             tileShape: root.tileShape
+            uniformIcons: root.uniformIcons
             badgeCount: root.badgesOn ? root.badgeCountFor(modelData, root.badgeMap) : 0
             badgeUrgent: root.badgesOn && DockModel.hasUrgentWindow(modelData, root.urgentWindows)
             isBeingDragged: root.draggingPinnedIndex === index
@@ -2026,6 +2030,7 @@ Item {
             accent: root.accent
             fontFamily: root.fontFamily
             tileShape: root.tileShape
+            uniformIcons: root.uniformIcons
             badgeCount: root.badgesOn ? root.badgeCountFor(modelData, root.badgeMap) : 0
             badgeUrgent: root.badgesOn && DockModel.hasUrgentWindow(modelData, root.urgentWindows)
             targetScale: (Array.isArray(root.unpinnedScales) && index < root.unpinnedScales.length) ? root.unpinnedScales[index] : 1.0
@@ -2091,6 +2096,7 @@ Item {
             accent: root.accent
             fontFamily: root.fontFamily
             tileShape: root.tileShape
+            uniformIcons: root.uniformIcons
             badgeCount: root.badgesOn ? root.badgeCountFor(modelData, root.badgeMap) : 0
             badgeUrgent: root.badgesOn && DockModel.hasUrgentWindow(modelData, root.urgentWindows)
             targetScale: (Array.isArray(root.recentScales) && index < root.recentScales.length) ? root.recentScales[index] : 1.0
@@ -2140,6 +2146,7 @@ Item {
             accent: root.accent
             fontFamily: root.fontFamily
             tileShape: root.tileShape
+            uniformIcons: root.uniformIcons
             targetScale: (Array.isArray(root.extraScales) && index < root.extraScales.length) ? root.extraScales[index] : 1.0
             targetOffsetX: (Array.isArray(root.extraOffsets) && index < root.extraOffsets.length) ? root.extraOffsets[index] : 0
 

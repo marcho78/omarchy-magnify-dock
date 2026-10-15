@@ -6,7 +6,7 @@ var defaultSettings = {
   dockColor: "#12141a", drawerColor: "#0a0c11", accentColor: "", previewColor: "",
   windowPreviews: true, previewWidth: 220, previewHeight: 220,
   themeColors: true, recentApps: false, recentCount: 4,
-  tileShape: "rounded",
+  tileShape: "rounded", uniformIcons: false,
   showBackground: true, collapsible: false,
   badges: true, showTrash: false, folders: []
 };
@@ -54,8 +54,9 @@ function normalizeSettings(input) {
   result.previewColor = isHexColor(input.previewColor) ? input.previewColor.toLowerCase() : "";
   result.themeColors = typeof input.themeColors === "boolean" ? input.themeColors : defaultSettings.themeColors;
   result.recentApps = typeof input.recentApps === "boolean" ? input.recentApps : defaultSettings.recentApps;
-  result.tileShape = ["rounded", "circle", "square"].indexOf(input.tileShape) >= 0 ? input.tileShape : "rounded";
+  result.tileShape = ["rounded", "circle", "square", "none"].indexOf(input.tileShape) >= 0 ? input.tileShape : "rounded";
   result.showBackground = typeof input.showBackground === "boolean" ? input.showBackground : defaultSettings.showBackground;
+  result.uniformIcons = typeof input.uniformIcons === "boolean" ? input.uniformIcons : defaultSettings.uniformIcons;
   result.collapsible = typeof input.collapsible === "boolean" ? input.collapsible : defaultSettings.collapsible;
   result.badges = typeof input.badges === "boolean" ? input.badges : defaultSettings.badges;
   result.showTrash = typeof input.showTrash === "boolean" ? input.showTrash : defaultSettings.showTrash;

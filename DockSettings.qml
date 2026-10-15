@@ -523,9 +523,16 @@ DockGlass {
           SectionTitle { title: "Tiles and capsule" }
           Segmented {
             width: parent.width
-            options: [{ id: "rounded", label: "Rounded" }, { id: "circle", label: "Circle" }, { id: "square", label: "Square" }]
+            options: [{ id: "rounded", label: "Rounded" }, { id: "circle", label: "Circle" }, { id: "square", label: "Square" }, { id: "none", label: "None" }]
             current: root.settings.tileShape || "rounded"
             onChosen: function(id) { root.preferenceChanged("tileShape", id) }
+          }
+          ToggleRow {
+            width: parent.width
+            label: "Uniform icon size"
+            sub: "Scale each icon's visible artwork to the same optical size"
+            on: root.settings.uniformIcons === true
+            onToggled: root.preferenceChanged("uniformIcons", !on)
           }
           Item { width: 1; height: 8 }
           SliderRow { width: parent.width; key: "opacity"; label: "Background opacity"; min: 0.2; max: 1; step: 0.02; fmt: "%" }

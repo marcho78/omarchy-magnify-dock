@@ -68,7 +68,11 @@ Everything applies live and is saved to `~/.config/omarchy/dock-pinned-macos.jso
 **Appearance**: icon size, magnification, spacing, background opacity, text
 size, window preview width and height, recent apps shown.
 
-**Icon shape**: Rounded, Circle, or Square.
+**Icon shape**: Rounded, Circle, Square, or None (bare icons, no tile).
+
+**Uniform icon size** (off by default): scales each icon's visible artwork to
+the same optical size instead of drawing every image file at the same size,
+so icons with built-in padding, edge-to-edge artwork and round icons line up.
 
 **Colors**: **Follow Omarchy theme** (on by default) takes the dock, drawer
 and accent colours from the current theme. Turn it off to pick your own dock,
